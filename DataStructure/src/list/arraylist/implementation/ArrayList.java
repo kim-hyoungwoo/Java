@@ -59,4 +59,31 @@ public class ArrayList {
 	public Object get(int index) {
 		return elementData[index];
 	}
+	public int size() {
+		return size;
+	}
+	public int indexOf(Object index) {
+		for(int i = 0; i < size; i++) {
+			if (index == elementData[i]) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	public ListIterator listIterator() {
+		return new ListIterator();
+	}
+	
+	class ListIterator {
+		private int nextIndex = 0;
+		
+		public boolean hasNext() {
+			return nextIndex < size();
+		}
+		
+		public Object next() {
+			return elementData[nextIndex++];
+			
+		}
+	}
 }
