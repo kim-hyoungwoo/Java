@@ -6,6 +6,7 @@ public class SelectionSort {
 		/**
 		 * 정렬 알고리즘 개요 및 선택 정렬 (Selection Sort)<br>
 		 * https://youtu.be/8ZiSzteFRYc
+		 * 이게 잘 올라가는지 확인 
 		 */
 		int min = 0;
 		int index = 0;
