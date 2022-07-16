@@ -34,7 +34,7 @@ public class Programmers {
 	public int solution2(int[] nums) {
 		/**
 		 * 프로그래머스(해시) - 포켓몬<br>
-		 * https://school.programmers.co.kr/learn/courses/30/lessons/1845 아직 못풀음
+		 * https://school.programmers.co.kr/learn/courses/30/lessons/1845 아직 못풀음???
 		 */
 		// 중복 제거 후
 		Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();
