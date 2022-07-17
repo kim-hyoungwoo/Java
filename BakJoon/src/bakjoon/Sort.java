@@ -43,6 +43,26 @@ public class Sort {
 		for (int i : array) {
 			System.out.println(i);
 		}
+	}
+	
+	/**
+	 * <br>
+	 * 백준 알고리즘 (정렬) 2751번 -> 퀵정렬 활용 <br>
+	 * https://www.acmicpc.net/submit/2751
+	 * <br>
+	 */
+	
+	public void problem_2751(BufferedReader br, BufferedWriter bw, StringTokenizer st) throws IOException {
+		
+		// N 개의 수
+		int num = Integer.parseInt(st.nextToken());
+		int[] array = new int[num];
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i] = Integer.parseInt(br.readLine());
+		}
+		
+		
 		
 	}
 }
