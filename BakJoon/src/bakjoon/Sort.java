@@ -47,7 +47,7 @@ public class Sort {
 	
 	/**
 	 * <br>
-	 * 백준 알고리즘 (정렬) 2751번 -> 퀵정렬 활용 <br>
+	 * 백준 알고리즘 (정렬) 2750번 -> 퀵정렬 활용 <br>
 	 * https://www.acmicpc.net/submit/2751
 	 * <br>
 	 */
@@ -62,7 +62,50 @@ public class Sort {
 			array[i] = Integer.parseInt(br.readLine());
 		}
 		
+		problem_2751_1(array, 0, array.length-1);
 		
+		for(int i : array) {
+			System.out.println(i);
+		}
 		
+	}
+	
+	public void problem_2751_1 (int[] data, int start, int end) {
+		
+		// 원소의 개수가 한개일 경우
+		if (start >= end) {
+			return;
+		}
+		
+		// 피벗 값 설정
+		int key = start;
+		// 검색 start 부분 설정
+		int i = start + 1;
+		// 검색 end 부분 설정
+		int j = end;
+		// 임시 저장
+		int temp;
+		
+		while (i <= j) {// 검색하는게 엇갈리면 Stop
+			while (i <= end && data[key] >= data[i]) { // 키 값보다 대상값이 크면 break;
+				i++;
+			}
+			while (j > start && data[key] <= data[j]) { //키 값보다 대상값이 작으면 break;
+				j--;
+			}
+			if (i > j) {// 오른쪽 부터 검색 대상과 왼쪽부터 검색 대상이 엇갈렸다면 키값과 교체
+				temp = data[j];
+				data[j] = data[key];
+				data[key] = temp;
+			}
+			else { // 오른쪽 부터 검색 대상과 왼쪽부터 검색 대상이 엇갈리지 않았다면 start와 end 교체
+				temp = data[j];
+				data[j] = data[i];
+				data[i] = temp;
+			}
+		}
+		
+		problem_2751_1(data, start, j-1);
+		problem_2751_1(data, j+1, end);
 	}
 }

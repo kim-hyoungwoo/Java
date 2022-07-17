@@ -16,7 +16,7 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		Sort sort = new Sort();
 		
-		sort.problem_2750(br, bw, st);
+		//sort.problem_2750(br, bw, st);
 		sort.problem_2751(br, bw, st);
 	}
 
