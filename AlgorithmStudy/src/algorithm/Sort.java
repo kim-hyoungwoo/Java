@@ -69,7 +69,7 @@ public class Sort {
 		
 		for(int i = 0; i < array.length-1; i++) {
 			j = i;
-			while (array[j] > array[j+1]) {
+			while (j > 0 && array[j] > array[j+1]) {
 				temp = array[j];
 				array[j] = array[j+1];
 				array[j+1] = temp;
@@ -81,4 +81,42 @@ public class Sort {
 			System.out.print(i);
 		}
 	}
+	public void quickSort(int[] data, int start, int end) {
+		/**
+		 * 퀵 정렬(quick sort)<br>
+		 * https://youtu.be/O-O-90zX-U4
+		 */
+		// 원소가 1개인 경우 
+		if (start >= end) {
+			return;
+		}
+		// 피벗 값 설정 
+		int key = start; // 키는 첫번째 원소 
+		int i = start + 1; // 왼쪽 출발지점
+		int j = end; // 오늘쪽 출발지점 
+		int temp;
+		//  && 
+		while (i <= j) { // 엇갈릴 때까지 반복 
+			while (i <= end && data[i] <= data[key]) { // 키 값보다 큰 값을 만날때 까지 
+				i++;
+			}
+			while (j > start && data[j] >= data[key]) { // 키 값보다 작은 값을 만날때 까지 
+				j--;
+			}
+			if (i > j) { // 현재 엇갈린 상태면 키 값과 교채 
+				temp = data[j];
+				data[j] = data[key];
+				data[key] = temp;
+			}
+			else { // 다했는데도 엇갈리지 않았다면 교체 
+				temp = data[j];
+				data[j] = data[i];
+				data[i] = temp;
+			}
+			
+		}
+		quickSort(data, start, j-1);
+		quickSort(data, j+1, end);
+	}
+	
 }
