@@ -119,4 +119,69 @@ public class Sort {
 		quickSort(data, j+1, end);
 	}
 	
+	/**
+	 * 병합 정렬(Merge sort)<br>
+	 * https://youtu.be/ctkuGoJPmAE
+	 */
+	
+	public void mergeSort(int[] array, int start, int end) {
+		// 정중앙을 기점으로 배열을 나눈다. 
+		// 크기가 1보다 큰 경우
+		if (start < end) {
+			// 정중앙 을 가르키는것
+			int middle = (start + end) / 2;
+			mergeSort(array, start, middle);
+			mergeSort(array, middle+1, end);
+			
+			//나중에 합쳐서 정렬한다. 
+			mergeSort_1(array, start, middle, end);
+		}
+	}
+	
+	public void mergeSort_1(int[] array, int start, int middle, int end) {
+		
+		int number = 8;
+		int[] sorted = new int[number]; // 정렬 배열은 반드시 전역 변수로 선언
+		
+		// 첫번째 배열의 비교 대상
+		int i = start;
+		// 두번째 배열의 비교 대상
+		int j = middle + 1;
+		// 비교해서 넣는 값
+		int k = start;
+		
+		// 작은 순서대로 배열에 삽입
+		while (i <= middle && j <= end) {
+			if (array[i] <= array[j]) {
+				sorted[k] = array[i];
+				i++;
+			}
+			else {
+				sorted[k]  = array[j];
+				j++;
+			}
+			k++;
+		}
+		
+		// 남은 데이터도 삽입
+		// i가 먼저 끝난 경우
+		if (i > middle) {
+			for (int t = j; t <= end; t++) {
+				sorted[k] = array[t];
+				k++;
+			}
+		}
+		// j가 먼저 끝난 경우
+		else {
+			for(int t = i; t <= middle; t++) {
+				sorted[k] = array[t];
+				k++;
+			}
+		}
+		// 정렬된 배열을 삽입
+		for (int t = start; t <= end; t++) {
+			array[t] = sorted[t];
+		}
+	}
+	
 }

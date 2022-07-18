@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Sort {
@@ -62,11 +63,15 @@ public class Sort {
 			array[i] = Integer.parseInt(br.readLine());
 		}
 		
+		//Arrays.sort(array);
+		
 		problem_2751_1(array, 0, array.length-1);
 		
 		for(int i : array) {
-			System.out.println(i);
+			bw.write(i + "\n");
+			bw.flush();
 		}
+		bw.close();
 		
 	}
 	
@@ -87,10 +92,10 @@ public class Sort {
 		int temp;
 		
 		while (i <= j) {// 검색하는게 엇갈리면 Stop
-			while (i <= end && data[key] >= data[i]) { // 키 값보다 대상값이 크면 break;
+			while (i <= end && data[i] <= data[key]) { // 키 값보다 대상값이 크면 break;
 				i++;
 			}
-			while (j > start && data[key] <= data[j]) { //키 값보다 대상값이 작으면 break;
+			while (j > start && data[j] <= data[key]) { //키 값보다 대상값이 작으면 break;
 				j--;
 			}
 			if (i > j) {// 오른쪽 부터 검색 대상과 왼쪽부터 검색 대상이 엇갈렸다면 키값과 교체
