@@ -20,13 +20,14 @@ public class Main {
 			System.out.print(i);
 		}
 		System.out.println("");
-		int heapNum = 9;
-		int[] heapArray = {7, 6, 5, 8, 3, 5, 9, 1, 6};
+		int[] heapArray = {3, 4, 9, 5, 3, 6, 8, 7};
 		
-		sort.heapSort(heapArray.length, heapArray);
+		sort.makeHeap(heapArray.length, heapArray);
+		
+		sort.setHeapSort(heapArray.length, heapArray);
 		
 		for (int i : heapArray) {
-			System.out.println(i);
+			System.out.print(i);
 		}
 	}
 

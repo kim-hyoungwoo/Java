@@ -188,11 +188,11 @@ public class Sort {
 	 * 힙 정렬 (Heap Sort)<br>
 	 * https://youtu.be/iyl9bfp_8ag
 	 */
-	public void heapSort(int num, int[] heap) {
+	public void heapSort(int length, int[] heap) {
 		// 먼저 전체 트리 구조를 최대 힙 구조로 바꾼다.
-		for (int i = 0; i < num; i++) {
+		for (int i = 0; i < length; i++) {
 			int current = i;
-			do {
+			while (current != 0) {
 				// root 는 지금 자신의 -1 을 하고 2로 나누면 나온다.
 				int root = (current - 1) / 2;
 				// 부모의 값이 자식의 값보다 크다면
@@ -202,10 +202,10 @@ public class Sort {
 					heap[current] = temp;
 				}
 				current = root;
-			} while (current != 0);
+			}
 		}
 		// 크기를 줄여가며 반복적으로 힙을 구성
-		for (int i = num - 1; i >= 0; i--) {
+		for (int i = length - 1; i >= 0; i--) {
 			// 0번의 인덱스 값과 마지막 값을 바꿔 정렬한다. 
 			int temp = heap[0];
 			heap[0] = heap[i];
@@ -214,7 +214,7 @@ public class Sort {
 			int root = 0;
 			// 현재 위치
 			int current = 1;
-			do {
+			while (current < i) {
 				//root 의 자식 계산
 				current = 2 * root + 1;
 				
@@ -224,13 +224,51 @@ public class Sort {
 					current++;
 				}
 				// 루트보다 자식이 더 크다면 교환
-				if (heap[root] < heap[current] && current < i ) {
+				if (current < i && heap[root] < heap[current]  ) {
 					int temp2 = heap[root];
 					heap[root] = heap[current];
 					heap[current] = temp2;
 				}
 				root = current;
-			} while (current < i);
+			}
+		}
+	}
+	
+	public void makeHeap (int length, int[] array) {
+		for (int i = 0; i < length; i++) {
+			int current = i;
+			while (current != 0) {
+				int root = (current - 1) / 2;
+				if (array[current] > array[root]) {
+					int temp = array[root];
+					array[root] = array[current];
+					array[current] = array[temp];
+				}
+				current = root;
+			}
+		}
+	}
+	
+	public void setHeapSort (int length, int[] array) {
+		for (int i = length-1; i >= 0; i--) {
+			int temp = array[0];
+			array[0] = array[i];
+			array[i] = temp;
+			int root = 0;
+			int current = 1;
+			
+			while (current < i) {
+				current = 2 * root + 1 ;
+				if (current < i-1 && array[current] < array[current + 1]) {
+					current++;
+				}
+				if (current < i && array[root] < array[current]) {
+					int temp2 = array[root];
+					array[root] = array[current];
+					array[current] = temp2;
+				}
+				root = current;
+			}
 		}
 	}
 }

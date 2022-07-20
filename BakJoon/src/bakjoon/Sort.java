@@ -113,4 +113,74 @@ public class Sort {
 		problem_2751_1(data, start, j-1);
 		problem_2751_1(data, j+1, end);
 	}
+	
+	/**
+	 * <br>
+	 * 백준 알고리즘_10989 -> 힙정렬 활용
+	 * https://www.acmicpc.net/problem/10989
+	 * <br>
+	 * @param br
+	 * @param bw
+	 * @param st
+	 * @throws IOException
+	 */
+	public void problem_10989(BufferedReader br, BufferedWriter bw, StringTokenizer st) throws IOException {
+		int number = Integer.parseInt(st.nextToken());
+		
+		int[] array = new int[number];
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i] = Integer.parseInt(br.readLine());
+		}
+		
+		// 완전 힙 구조 만들기 
+		for (int i = 0; i < array.length; i++) {
+			// 비교 target
+			int current = i;
+			// 현재 target 이 root(0번인덱스) 가 아니면
+			while (current != 0) {
+				// 현재 target의 root
+				int root = (current - 1) / 2;
+				// root 가 현재 target 보다 작다면
+				if (array[current] > array[root]) {
+					int temp = array[current];
+					array[current] = array[root];
+					array[root] = temp;
+				}
+				current = root;
+			}
+		}
+		
+		// length-1 인 이유는 맨 첫번째 노드랑 마지막 노드를 바꿔서 sort 해주기 때문에
+		for (int i = array.length-1; i >= 0; i--) {
+			//root 의 있는 가장 큰 값을 가장 하단으로 내린뒤 그 노드 빼고 다시 계산
+			int temp = array[0];
+			array[0] = array[i];
+			array[i] = temp;
+			
+			int root = 0;
+			int current = 1;
+			
+			while (current < i) {
+				current = 2 * root + 1;
+				
+				if (current < i-1 && array[current] < array[current + 1]) {
+					current++;
+				}
+				
+				if (current < i && array[root] < array[current]) {
+					int temp2 = array[root];
+					array[root] = array[current];
+					array[current] = temp2;
+				}
+				root = current;
+			}
+		}
+		
+		for (int i : array) {
+			bw.write(i + "");
+			bw.flush();
+		}
+		
+	}
 }
