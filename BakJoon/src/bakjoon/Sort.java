@@ -3,9 +3,6 @@ package bakjoon;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Sort {
@@ -181,6 +178,99 @@ public class Sort {
 			bw.write(i + "");
 			bw.flush();
 		}
+		
+	}
+	
+	/**
+	 * <br>
+	 * 백준 알고리즘_2108 -> 힙정렬 활용
+	 * https://www.acmicpc.net/problem/2108
+	 * <br>
+	 * @param br
+	 * @param bw
+	 * @param st
+	 * @throws IOException
+	 */
+	public void problem_2108(BufferedReader br, BufferedWriter bw, StringTokenizer st) throws IOException {
+		/**
+		 * 첫째 줄에 수의 개수 N(1 ≤ N ≤ 500,000)이 주어진다. 단, N은 홀수이다. 
+		 * 그 다음 N개의 줄에는 정수들이 주어진다. 입력되는 정수의 절댓값은 4,000을 넘지 않는다.
+		 * 첫째 줄에는 산술평균을 출력한다. 소수점 이하 첫째 자리에서 반올림한 값을 출력한다.
+		 * 둘째 줄에는 중앙값을 출력한다.
+		 * 셋째 줄에는 최빈값을 출력한다. 여러 개 있을 때에는 최빈값 중 두 번째로 작은 값을 출력한다.
+		 * 넷째 줄에는 범위를 출력한다.
+		 **/
+		
+		int num = Integer.parseInt(st.nextToken());
+		int[] array = new int[num];
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i] = Integer.parseInt(br.readLine());
+		}
+		
+		// 힙 정렬 해볼까
+		// 최대 힙 만들기
+		for (int i = 0; i < array.length; i++) {
+			int current = i;
+			while (current != 0) {
+				int root = (current - 1) / 2;
+				if (array[root] < array[current]) {
+					int temp = array[root];
+					array[root] = array[current];
+					array[current] = temp;
+				}
+				current = root;
+			}
+		}
+		// 만들어진 최대힙으로 오름차순 정렬
+		for (int i = array.length-1; i >= 0; i--) {
+			int temp = array[i];
+			array[i] = array[0];
+			array[0] = temp;
+			int root = 0;
+			int current = 1;
+			while (current < i) {
+				current = 2 * root + 1;
+				
+				if (current < i-1 && array[current] < array[current + 1]) {
+					current++;
+				}
+				
+				if (current < i && array[root] < array[current]) {
+					int temp2 = array[root];
+					array[root] = array[current];
+					array[current] = temp2;
+				}
+				root = current;
+			}
+			
+		}
+		
+		// 첫째 줄에는 산술평균을 출력한다. 소수점 이하 첫째 자리에서 반올림한 값을 출력한다.
+		double sum = 0;
+		for (int i : array) {
+			sum += i;
+		}
+		bw.write(Math.round(sum/num) + "\n");
+		bw.flush();
+		
+		// 둘째 줄에는 중앙값을 출력한다. (오름차순 정렬 후 중앙값)
+		bw.write(array[array.length/2] + "\n");
+		bw.flush();
+		
+		// 셋째 줄에는 최빈값을 출력한다. 여러 개 있을 때에는 최빈값 중 두 번째로 작은 값을 출력한다.
+		int count = 1;
+		for (int i = 0; i < array.length; i++) {
+			if (i < array.length-1 && array[i] == array[i+1]) {
+				count++;
+			}
+		}
+		bw.write(count + "\n");
+		bw.flush();
+		
+		//넷째 줄에는 범위를 출력한다.
+		bw.write(array[array.length-1] - array[0] + "\n");
+		bw.flush();
 		
 	}
 }
