@@ -271,4 +271,27 @@ public class Sort {
 			}
 		}
 	}
+	/**
+	 * 계수 정렬 (Counting Sort)<br>
+	 * https://youtu.be/n4kbFRn2z9M
+	 */
+	public void countingSort(int count, int[] array) {
+		int[] countArray = new int[count];
+		
+		for (int i = 0; i < countArray.length; i++) {
+			countArray[i] = 0;
+		}
+		
+		for (int i = 0; i < array.length; i++) {
+			countArray[array[i] - 1]++;
+		}
+		
+		for (int i = 0; i < countArray.length; i++) {
+			if (countArray[i] != 0) {
+				for(int j = 0; j < countArray[i]; j++) {
+					System.out.print(i + 1);
+				}
+			}
+		}
+	}
 }

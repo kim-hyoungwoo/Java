@@ -29,6 +29,15 @@ public class Main {
 		for (int i : heapArray) {
 			System.out.print(i);
 		}
+		System.out.println("");
+		
+		int count = 5;
+		int[] countingArray = {
+				1, 3, 2, 4, 3, 2, 5, 3, 1, 2, 
+				3, 4, 4, 3, 5, 1, 2, 3, 5, 2, 
+				3, 1, 4, 3, 5, 1, 2, 1, 1, 1
+			};
+		sort.countingSort(count, countingArray);
 	}
 
 }
