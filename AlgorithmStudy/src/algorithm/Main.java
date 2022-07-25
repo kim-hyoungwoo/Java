@@ -13,17 +13,18 @@ public class Main {
 		for (int i : quickArray) {
 			System.out.print(i);
 		}
+		
 		System.out.println("");
 		int[] mergeArray = {7, 6, 5, 8, 3, 5, 9, 1};
 		sort.mergeSort(mergeArray, 0, mergeArray.length-1);
 		for (int i : mergeArray) {
 			System.out.print(i);
 		}
+		
 		System.out.println("");
 		int[] heapArray = {3, 4, 9, 5, 3, 6, 8, 7};
 		
 		sort.makeHeap(heapArray.length, heapArray);
-		
 		sort.setHeapSort(heapArray.length, heapArray);
 		
 		for (int i : heapArray) {
